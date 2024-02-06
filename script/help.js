@@ -1,38 +1,58 @@
 module.exports.config = {
   name: 'help',
-  version: '1.0.0',
+  version: '1.1.0', // Update the version number
 };
 
 module.exports.run = async function ({ api, event, enableCommands, args }) {
-  const input = args.join(' ');
-
   try {
-    
-  const eventCommands = enableCommands[1].handleEvent;
-  const commands = enableCommands[0].commands;
+    const helpMessage = `╔═══════════╗
+     𝗞𝘀𝗵𝗶𝘁𝗶𝘇 𝗔𝘂💐
+╚═══════════╝\n╭─╮
+│『 𝗜𝗡𝗙𝗢 』
+│☪︎define  ☪︎history
+│☪︎time ☪︎stalk
+│☪︎nn ☪︎dictionary
+╰───────────ꔪ
+╭─╮
+│『 𝗔𝗡𝗜𝗠𝗘 』
+│ あanistatus あanigif
+│ あanipic 
+╰─────────ꔪ
+╭─╮
+│『 𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗥 』
+│⊙alldl (soon)
+╰─────────ꔪ
+╭─╮
+│『 𝗧𝗢𝗢𝗟𝗦 』
+│☭getlink ☭clean
+╰─────────ꔪ
+╭─╮
+│『 𝗘𝗡𝗧𝗘𝗥𝗧𝗔𝗜𝗡𝗠𝗘𝗡𝗧 』
+│♡fun ♡smeme
+│♡say ♡sad
+│♡lyricalvideo ♡fun2
+╰──────────ꔪ
 
-  const commandsPerPage = 20;
-  const page = input ? parseInt(input) : 1;
+╭─╮
+│『 𝗙𝗔𝗖𝗘𝗕𝗢𝗢𝗞 』
+│※page
+│※group
+╰────────ꔪ
+╭─╮
+│『 𝗠𝗨𝗦𝗜𝗖 』
+│♪sing ♪lv
+╰──────────ꔪ
+╭─────────╮
+│『  𝗔𝗜 』
+│❃gpt
+│❃ai
+╰─────────╯
+╔═══════════╗
+        𝗔𝘂𝘁𝗼𝗕𝗼𝘁🤍🪽
+╚═══════════╝`;
 
-  let startIdx = (page - 1) * commandsPerPage;
-  let endIdx = startIdx + commandsPerPage;
-
-  let helpMessage = 'Commands:\n\n';
-  for (let i = startIdx; i < Math.min(endIdx, commands.length); i++) {
-    helpMessage += `\t${i + 1}. ${commands[i]}\n`;
+    api.sendMessage(helpMessage, event.threadID, event.messageID);
+  } catch (error) {
+    console.log(error);
   }
-
-  helpMessage += '\nEvent:\n\n';
-  eventCommands.forEach((eventCommand, index) => {
-    helpMessage += `\t${index + 1}. ${eventCommand}\n`;
-  });
-
-  if (commands.length > endIdx) {
-    helpMessage += `\nPage ${page} - To access the next page, use: !help ${page + 1}`;
-  }
-
-  api.sendMessage(helpMessage, event.threadID, event.messageID);
-    } catch (error) {
-      console.log(error)
-    }
 };
