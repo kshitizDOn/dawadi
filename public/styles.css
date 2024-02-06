@@ -106,33 +106,40 @@ label {
     position: relative;
     overflow: hidden;
     z-index: 1;
+    border: 2px solid transparent; /* Initially transparent border */
 }
 
-.container-buttons .cmd-container:before {
+.container-buttons .cmd-container:hover {
+    border-color: white; /* White border on hover */
+}
+
+.container-buttons .cmd-container:active {
+    background-color: rgba(255, 255, 255, 0.1); /* Faint white background on click */
+}
+
+.container-buttons .cmd-container::before {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300%;
-    height: 300%;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    transition: all 0.5s ease;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0); /* Transparent initially */
+    transition: background-color 0.3s ease; /* Smooth transition */
+    border-radius: 20px; /* Same as the button's border radius */
     z-index: -1;
-    opacity: 0;
 }
 
-.container-buttons .cmd-container:hover:before {
-    width: 100%;
-    height: 100%;
-    opacity: 1;
+.container-buttons .cmd-container:hover::before {
+    background-color: rgba(255, 255, 255, 0.2); /* White glow on hover */
 }
 
-.container-buttons .cmd-container.active:before {
-    width: 100%;
-    height: 100%;
-    opacity: 1;
+.container-buttons .cmd-container:active::before {
+    background-color: rgba(255, 255, 255, 0.5); /* Stronger white glow on click */
+}
+
+.container-buttons .cmd-container.active::before {
+    background-color: rgba(255, 255, 255, 0.5); /* Strong white glow when clicked */
 }
 
 /* Hover Effect for Container */
