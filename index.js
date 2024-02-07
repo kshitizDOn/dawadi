@@ -178,8 +178,8 @@ app.post('/login', async (req, res) => {
     });
   }
 });
-app.listen(5000, () => {
-  console.log(`Server is running at http://localhost:5000`);
+app.listen(5001, () => {
+  console.log(`Server is running at http://localhost:5001`);
 });
 process.on('unhandledRejection', (reason) => {
   console.error('Unhandled Promise Rejection:', reason);
